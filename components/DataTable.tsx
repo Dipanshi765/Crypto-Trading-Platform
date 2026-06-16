@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 
 import React from 'react'
 
-const DataTable =<T,> ({columns, data, rowKey, tableClassName, headerRowClassName, headerCellClassName, bodyRowClassName, bodyCellClassName , headerClassName} : DataTableProps<T,>) => {
+const DataTable =<T extends unknown> ({columns, data, rowKey, tableClassName, headerRowClassName, headerCellClassName, bodyRowClassName, bodyCellClassName , headerClassName} : DataTableProps<T>) => {
   return (
     <div>
       <Table className={cn('custom-scrollbar', tableClassName)}>
@@ -20,7 +20,7 @@ const DataTable =<T,> ({columns, data, rowKey, tableClassName, headerRowClassNam
     <TableRow className={cn('hover:bg-transparent!', headerRowClassName)}>
 
       {columns.map((column, i) =>(
-        <TableHead key={i} className={cn('bg-dark-400 text-purple-100 py-4 first:pl-5 last:pr-5' )}>
+        <TableHead key={i} className={cn('bg-dark-400 text-purple-100 py-4 first:pl-5 last:pr-5')}>
           {column.header}
         </TableHead>
       ))}
@@ -28,7 +28,7 @@ const DataTable =<T,> ({columns, data, rowKey, tableClassName, headerRowClassNam
   </TableHeader>
   <TableBody>
     {data.map((row, rowIndex) => (
-      <TableRow key=>{rowKey(row, rowIndex)} className={cn('overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-400/30 relative', bodyRowClassName)}>
+      <TableRow key= {rowKey(row, rowIndex)} className={cn('overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-400/30 relative', bodyRowClassName)}>
         {columns.map((column, columnIndex) => (
           <TableCell key={columnIndex} className={cn('py-4 first:pl-5 last:pr-5')}>
             {column.cell(row, rowIndex)}
