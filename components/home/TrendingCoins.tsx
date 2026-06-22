@@ -7,6 +7,8 @@ import { TrendingDown, TrendingUp } from 'lucide-react';
 import DataTable from '../DataTable';
 import { TrendingCoinsFallback } from './fallback';
 
+
+
 const TrendingCoins = async () => {
     // const trendingCoins = await fetcher<{coins: TrendingCoin[] }>('/search/trending' , undefined, 300);
      let trendingCoins;

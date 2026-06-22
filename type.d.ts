@@ -267,7 +267,7 @@ interface DataTableColumn<T> {
   cellClassName?: string;
 }
 
-interface DataTableProps<T> {
+interface DataTableProps<T,> {
   columns: DataTableColumn<T>[];
   data: T[];
   rowKey: (row: T, index: number) => React.Key;
