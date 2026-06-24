@@ -26,12 +26,19 @@ const CandlestickChart = ({
 
     const fetchOHLCData = async (selectedPeriod: Period) => {
       try{
-        const {days, interval } = PERIOD_CONFIG[selectedPeriod];
+        const {days } = PERIOD_CONFIG[selectedPeriod];
+        
+        console.log("SENDING TO COINGECKO:", {
+      period: selectedPeriod,
+      days,
+   
+    });
+
         const newData =  await fetcher<OHLCData[]>(`/coins/${coinId}/ohlc`, {
                 vs_currency: 'usd',
                 days,
-                interval,
-                precision: 'full',
+                // interval,
+                // precision: 'full',
               });
 
               setOhlcData(newData ?? []);
