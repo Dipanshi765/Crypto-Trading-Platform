@@ -39,3 +39,76 @@ export async function fetcher<T>(
 
     return response.json();
 }
+
+
+// export async function searchCoins(query:string) {
+
+//   const data = await fetcher<{
+//     coins: SearchCoin[];
+//   }>(
+//     "/search",
+//     {
+//       query,
+//     },
+//     300
+//   );
+
+
+//   return data.coins;
+// }
+export async function searchCoins(query: string) {
+
+  // Step 1: search coins
+  const searchData = await fetcher<{
+    coins: SearchCoin[];
+  }>(
+    "/search",
+    {
+      query,
+    },
+    300
+  );
+
+
+  const coins = searchData.coins.slice(0, 10);
+
+
+  const ids = coins
+    .map((coin) => coin.id)
+    .join(",");
+
+
+  // Step 2: get market data
+  const marketData = await fetcher<CoinMarketData[]>(
+    "/coins/markets",
+    {
+      vs_currency: "usd",
+      ids,
+    },
+    300
+  );
+
+
+  // Step 3: merge both
+  return coins.map((coin) => {
+
+    const market = marketData.find(
+      (item) => item.id === coin.id
+    );
+
+
+    return {
+      ...coin,
+
+      data: {
+        price: market?.current_price ?? 0,
+
+        price_change_percentage_24h:
+          market?.price_change_percentage_24h ?? 0,
+      },
+
+    };
+
+  });
+
+}
