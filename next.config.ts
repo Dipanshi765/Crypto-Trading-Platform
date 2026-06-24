@@ -22,7 +22,9 @@
 
 // export default nextConfig;
  
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -31,7 +33,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "your-domain.com",
+        hostname: "assets.coingecko.com",
+      },
+      {
+        protocol: "https",
+        hostname: "coin-images.coingecko.com",
       },
     ],
   },
