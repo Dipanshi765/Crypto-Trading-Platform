@@ -1,24 +1,40 @@
-import type { NextConfig } from "next";
+// import type { NextConfig } from "next";
 
 
-const nextConfig: NextConfig = {
-  typescript:{
-    ignoreBuildErrors: true
-  }
+// const nextConfig: NextConfig = {
+//   typescript:{
+//     ignoreBuildErrors: true
+//   }
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: "https",
+//         hostname: "assets.coingecko.com",
+//       },
+     
+//       {
+//         protocol: "https",
+//         hostname: "coin-images.coingecko.com",
+//       }
+//     ]
+//   }
+// };
+
+// export default nextConfig;
+ 
+const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "assets.coingecko.com",
+        hostname: "your-domain.com",
       },
-     
-      {
-        protocol: "https",
-        hostname: "coin-images.coingecko.com",
-      }
-    ]
-  }
+    ],
+  },
 };
 
 export default nextConfig;
- 
